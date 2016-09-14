@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= title %> - yawn</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
+  </head>
+  <body>
+    <form action="/" method="get" id="filter">
+      <h1>Yiff Art Web Nodes</h1>
+      <small>Query:</small>
+      <input type="text" name="search"/>
+      <small>Orientation:</small>
+      <label><input type="checkbox" name="o-gay" checked/>Gay</label>
+      <label><input type="checkbox" name="o-les" checked/>Lesbian</label>
+      <label><input type="checkbox" name="o-str" checked/>Straight</label>
+      <small>Numbers:</small>
+      <label><input type="checkbox" name="n-cou" checked/>Couples</label>
+      <label><input type="checkbox" name="n-sol" checked/>Solo</label>
+      <label><input type="checkbox" name="n-thr" checked/>Threesome</label>
+      <label><input type="checkbox" name="n-org" checked/>Orgy</label>
+      <input type="submit" value="Search"/>
+      <small>
+        <a href="/">index</a> |
+        <a href="/submit">submit</a> |
+        <a href="/about">about</a> |
+        <a href="http://github.com/onefurry/yawn">source code</a>
+      </small>
+    </form>

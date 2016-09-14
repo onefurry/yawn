@@ -11,3 +11,11 @@ end
 get '/' do
   erb :index
 end
+
+get '/submit' do
+  erb :submit
+end
+
+get '/about' do
+  erb :about
+end
