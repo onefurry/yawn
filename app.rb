@@ -81,8 +81,16 @@ get '/submit/add?' do
     "EXISTS"
   else
     submissions.insert_one data
-    "DONE=#{data[:uuid]}"
+    if params['redirect'] == 'true'
+      redirect to "/s/#{data[:uuid]}"
+    else
+      "DONE=#{data[:uuid]}"
+    end
   end
+end
+
+get '/bookmarklet/?' do
+  erb :bookmarkletfa
 end
 
 get '/about?' do
