@@ -1,4 +1,13 @@
 <%= erb :pagehead, :locals => { :title => 'index' } %>
-This project is a WIP, and submission indexing has not been added yet.
-See <a href="/about">about</a> for details.
+<div id="page">
+  <p>A giant externally sourced yiff gallery!</p>
+  <% r.each do |res| %>
+  <div class="submission">
+    <img src="<%= res['image'] %>" class="indeximg"/><br/>
+    <a href="/s/<%= res['uuid'] %>"><%= res['title'] %></a> |
+    <a href="<%= res['artpage'] %>">source</a> |
+    <a href="<%= res['artist'] %>">artist</a>
+  </div>
+  <% end %>
+</div>
 <%= erb :pagefoot %>

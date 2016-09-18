@@ -1,5 +1,20 @@
-<%= erb :pagehead, :locals => { :title => 'about' } %>
+<%= erb :pagehead, :locals => { :title => 'submit' } %>
 <div id="page">
-  <h1>Submissions are Closed.</h1>
+  <h1>Submit</h1>
+  <p>
+    Please read <a href="/about">the rules</a> before submitting!
+  </p>
+  <small>Title:</small>
+  <input type="text" id="title" placeholder="Some Beatiful Yiff"/>
+  <small>Image URL:</small>
+  <input type="text" id="image" placeholder="http://website.com/artist/yiff/pic.png"/>
+  <small>Original Source Page:</small>
+  <input type="text" id="artpage" placeholder="http://website.com/artist/yiff"/>
+  <small>Artist's Page:</small>
+  <input type="text" id="artist" placeholder="http://website.com/artist"/>
+  <small>Tags (comma-separated):</small>
+  <input type="text" id="tags" placeholder="dogs,anal,watersports"/>
+  <button id="submitimg">Submit</button>
 </div>
+<script src="/submit.js"></script>
 <%= erb :pagefoot %>

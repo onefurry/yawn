@@ -39,7 +39,7 @@ small {
 a {
   color: #fff;
 }
-input[type=submit] {
+input[type=submit], button {
   margin: 1em auto;
   display: block;
   padding: 0.3em 0.7em;
@@ -52,4 +52,25 @@ input[type=submit] {
 #page {
   margin: 3em;
   width: 550px;
+}
+
+.cols {
+  display: flex;
+}
+.col {
+  width: 100%;
+}
+
+.submission {
+  border-top: 1px solid #fff;
+  padding: 5px 0;
+}
+
+.viewerimg {
+  max-width: 600px;
+  background: #fff;
+}
+.indeximg {
+  max-width: 450px;
+  background: #fff;
 }

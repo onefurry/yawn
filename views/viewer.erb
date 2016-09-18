@@ -1,0 +1,13 @@
+<%= erb :pagehead, :locals => { :title => s['title'] } %>
+<div id="page">
+  <img src="<%= s['image'] %>" class="viewerimg">
+  <h1><%= s['title'] %></h1>
+  <p>
+    <a href="<%= s['artpage'] %>">art source</a> |
+    <a href="<%= s['artist'] %>">artist page</a>
+  </p>
+  <p>
+    <%= tagify s['tags'] %>
+  </p>
+</div>
+<%= erb :pagefoot %>
