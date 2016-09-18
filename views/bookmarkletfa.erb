@@ -1,8 +1,8 @@
 <%= erb :pagehead, :locals => { :title => 'FA Converter Bookmarklet' } %>
-<div id="page">
+<div id='page'>
   <h1>Quickly submit FurAffinity submissions to YAWN!</h1>
   This bookmarklet automatically submits the current open FurAffinity submission to YAWN (and brings you there!).
   Drag this to your bookmarks bar and click on it on a FurAffinity submission page to use:
-  <a href="javascript:(function(){var i=document.querySelector("#submissionImg").src,t=document.querySelector(".submission-title").innerHTML,u=document.querySelector(".flex-submission-item-1 a").href,d=document.querySelectorAll(".tags-row .tags a"),s=window.location.href;a=[];d.forEach(function(g){a.push(g.innerHTML)});window.location.href="http://yawn.herokuapp.com/submit/add?redirect=true&image="+encodeURIComponent(i)+"&title="+encodeURIComponent(t)+"&artist="+encodeURIComponent(u)+"&artpage="+encodeURIComponent(s)+"&tags="+encodeURIComponent(a.join(","))})();">FA->YAWN</a>
+  <a href="javascript:(function(){var i=document.querySelector('#submissionImg').src,t=document.querySelector('.submission-title').innerHTML,u=document.querySelector('.flex-submission-item-1 a').href,d=document.querySelectorAll('.tags-row .tags a'),s=window.location.href;a=[];d.forEach(function(g){a.push(g.innerHTML)});window.location.href='http://yawn.herokuapp.com/submit/add?redirect=true&image='+encodeURIComponent(i)+'&title='+encodeURIComponent(t)+'&artist='+encodeURIComponent(u)+'&artpage='+encodeURIComponent(s)+'&tags='+encodeURIComponent(a.join(','))})();">FA->YAWN</a>
 </div>
 <%= erb :pagefoot %>
