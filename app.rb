@@ -44,8 +44,8 @@ get '/?' do
   if pt == nil then pt = [] end
     # NOTE: DOES NOT CURRENTLY WORK BECAUSE _ID IS NOT BEING SET AUTO_INCREMENT-WISE
     #  _id: { '$gt': start },
-  results = if pt.length > 0 then submissions.find({tags: { '$all': pt }}).limit(10)
-  else submissions.find().limit(10) end
+  results = if pt.length > 0 then submissions.find({tags: { '$all': pt }}).sort({ '_id': -1 }).limit(10)
+  else submissions.find().sort({ '_id': -1 }).limit(10) end
   erb :index, :locals => { :r => results }
 end
 
