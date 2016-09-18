@@ -44,8 +44,8 @@ get '/?' do
   if pt == nil then pt = [] end
     # NOTE: DOES NOT CURRENTLY WORK BECAUSE _ID IS NOT BEING SET AUTO_INCREMENT-WISE
     #  _id: { '$gt': start },
-  results = if pt.length > 0 then submissions.find({tags: { '$all': pt }}).sort({ '_id': -1 }).limit(10)
-  else submissions.find().sort({ '_id': -1 }).limit(10) end
+  results = if pt.length > 0 then submissions.find({tags: { '$all': pt }, reported: false }).sort({ '_id': -1 })
+  else submissions.find({ reported: false }).sort({ '_id': -1 }) end
   erb :index, :locals => { :r => results }
 end
 
@@ -53,8 +53,17 @@ get '/submit?' do
   erb :submit
 end
 
+get '/s/:uuid/report?' do
+  submissions.update_one({ uuid: params['uuid'] }, { '$set': { reported: true }})
+  redirect to '..'
+end
+
+get '/reported?' do
+  erb :index, :locals => { :r => submissions.find({ reported: true }).sort({ '_id': -1 }) }
+end
+
 get '/s/:uuid/?' do
-  uuidres = submissions.find({ uuid: params['uuid'] });
+  uuidres = submissions.find({ uuid: params['uuid'] })
   if (uuidres.count > 0)
     erb :viewer, :locals => { :s => uuidres.first }
   else
@@ -75,6 +84,7 @@ get '/submit/add?' do
     artpage: params['artpage'], # The original source page for the artwork.
     artist:  params['artist'],  # The profile page for the artist.
     tags:    params['tags'],    # The comma-separated list of tags to add.
+    reported: false,
     uuid:    SecureRandom.hex(10)
   }
   if submissions.find({ image: params['image'] }).count > 0
