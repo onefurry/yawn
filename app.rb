@@ -65,10 +65,12 @@ get '/?' do
 end
 
 get '/submit?' do
+  protected!
   erb :submit
 end
 
 get '/s/:uuid/report?' do
+  protected!
   submissions.update_one({ uuid: params['uuid'] }, { '$set': { reported: true }})
   redirect to "/s/#{params['uuid']}"
 end
@@ -117,9 +119,11 @@ get '/submit/add?' do
 end
 
 get '/bookmarklet/?' do
+  protected!
   erb :bookmarkletfa
 end
 
 get '/about?' do
+  protected!
   erb :about
 end
