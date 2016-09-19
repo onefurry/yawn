@@ -54,14 +54,20 @@ get '/?' do
   protected!
   param :tags, Array
   pt = params['tags']
+  page = params['page'] == nil ? 0 : params['page'].to_i
+  skip = page * 10
 
-  start = params['start'] != nil ? params['start'] : 0
   if pt == nil then pt = [] end
-    # NOTE: DOES NOT CURRENTLY WORK BECAUSE _ID IS NOT BEING SET AUTO_INCREMENT-WISE
-    #  _id: { '$gt': start },
-  results = if pt.length > 0 then submissions.find({tags: { '$all': pt }, reported: false }).sort({ '_id': -1 })
-  else submissions.find({ reported: false }).sort({ '_id': -1 }) end
-  erb :index, :locals => { :r => results }
+
+  yy = ''
+  if pt.length > 0
+    yy = submissions.find({tags: { '$all': pt }, reported: false })
+  else
+    yy = submissions.find({ reported: false })
+  end
+
+  results = yy.sort({ '_id': -1 }).skip(skip).limit(10)
+  erb :index, :locals => { :r => results, :prevpg => (page > 0 ? page - 1 : page), :nextpg => page + 1 }
 end
 
 get '/submit?' do

@@ -1,6 +1,8 @@
 <%= erb :pagehead, :locals => { :title => 'index' } %>
 <div id="page">
   <p>A giant externally sourced yiff gallery!</p>
+  <a href="?page=<%= prevpg %>&tags=<%= taglist %>">&lt;- Prev</a>
+  <a href="?page=<%= nextpg %>&tags=<%= taglist %>">Next -&gt;</a>
   <% r.each do |res| %>
   <div class="submission">
     <img src="<%= res['image'] %>" class="indeximg"/><br/>
@@ -9,5 +11,7 @@
     <a href="<%= res['artist'] %>">artist</a>
   </div>
   <% end %>
+  <a href="?page=<%= prevpg  %>&tags=<%= taglist %>">&lt;- Prev</a>
+  <a href="?page=<%= nextpg %>&tags=<%= taglist %>">Next -&gt;</a>
 </div>
 <%= erb :pagefoot %>
