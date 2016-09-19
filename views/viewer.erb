@@ -5,7 +5,7 @@
   <p>
     <a href="<%= s['artpage'] %>">art source</a> |
     <a href="<%= s['artist'] %>">artist page</a> |
-    <a href="./<%= s['uuid']" %>/report">report</a>
+    <a href="./<%= s[:uuid] %>/report">report</a>
   </p>
   <p>
     <%= tagify s['tags'] %>

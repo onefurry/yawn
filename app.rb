@@ -55,7 +55,7 @@ end
 
 get '/s/:uuid/report?' do
   submissions.update_one({ uuid: params['uuid'] }, { '$set': { reported: true }})
-  redirect to '..'
+  redirect to "/s/#{params['uuid']}"
 end
 
 get '/reported?' do
