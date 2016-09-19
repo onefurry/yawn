@@ -1,7 +1,10 @@
 require 'sinatra'
 require 'sinatra/param'
+require 'sinatra/cookies'
 require 'mongo'
 require 'securerandom'
+require 'nokogiri'
+require 'open-uri'
 
 $URL_REGEX = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/
 
@@ -34,9 +37,21 @@ helpers do
       ''
     end
   end
+  def protected!
+    return if authorized?
+    halt 400, erb(:confirm)
+  end
+
+  def authorized?
+    if params['confirmage'] == 'confirm'
+      cookies[:over18] = 'true'
+    end
+    cookies[:over18] == 'true'
+  end
 end
 
 get '/?' do
+  protected!
   param :tags, Array
   pt = params['tags']
 
@@ -59,10 +74,12 @@ get '/s/:uuid/report?' do
 end
 
 get '/reported?' do
+  protected!
   erb :index, :locals => { :r => submissions.find({ reported: true }).sort({ '_id': -1 }) }
 end
 
 get '/s/:uuid/?' do
+  protected!
   uuidres = submissions.find({ uuid: params['uuid'] })
   if (uuidres.count > 0)
     erb :viewer, :locals => { :s => uuidres.first }

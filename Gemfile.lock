@@ -2,8 +2,13 @@ GEM
   remote: https://rubygems.org/
   specs:
     bson (4.1.1)
+    mini_portile2 (2.1.0)
     mongo (2.3.0)
       bson (~> 4.1)
+    nokogiri (1.6.8-x64-mingw32)
+      mini_portile2 (~> 2.1.0)
+      pkg-config (~> 1.1.7)
+    pkg-config (1.1.7)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -20,6 +25,7 @@ PLATFORMS
 
 DEPENDENCIES
   mongo
+  nokogiri
   sinatra
   sinatra-param
 
